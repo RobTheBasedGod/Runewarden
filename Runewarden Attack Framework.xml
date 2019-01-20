@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>Runie Hit</name>
+			<packageName></packageName>
+			<script>weapon1 = 547880
+weapon2 = 54780
+
+venomlist = {
+		['paralysis'] = "curare",
+    ['asthma'] = "kalmia",
+    ['sensitivity'] = "prefarar",
+    ['illness'] = "euphorbia",
+    ['clumsiness'] = "xentio",
+    ['weariness'] = "vernalius"
+}
+
+venoms = {
+		['paralysis'] = 100,
+    ['asthma'] = 100,
+    ['sensitivity'] = 100,
+    ['illness'] = 100,
+    ['clumsiness'] = 100,
+    ['weariness'] = 100
+}
+
+venomprio = {
+		"paralysis",
+		"asthma",
+		"sensitivity",
+		"illness",
+		"clumsiness",
+		"weariness"
+}
+
+function venom_pick()
+
+myvenoms = {}
+venomcount = 0
+
+for _,v in ipairs(venomprio) do
+	
+	nextvenom = v
+	echo(nextvenom)
+			 	
+		if #myvenoms &lt; 2 then	 		
+				if affstrack.score[v] &lt; venoms[v] then
+						table.insert(myvenoms, v)
+						venomcount = venomcount + 1
+				end
+		end
+end
+end
+			
+			
+
+
+function runie_hit()
+
+firstaff = venomlist[myvenoms[1]]
+secondaff = venomlist[myvenoms[2]]
+
+	send("setalias runiehit stand/wipe "..weapon1.."/wipe "..weapon2.."/wield "..weapon1.."/wield "..weapon2.."/rsl "..target.." "..firstaff.." "..secondaff)
+  send("runiehit")
+	
+end
+       </script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+</MudletPackage>
